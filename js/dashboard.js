@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Now the DOM is fully loaded, let's run the script
-
     if (document.getElementById('caseManagementBody')) {
         const savedCases = JSON.parse(localStorage.getItem('judicialCases')) || [];
         const caseManagementBody = document.getElementById('caseManagementBody');
