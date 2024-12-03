@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rulings and Warrants</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Judicial Rulings and Warrants</h1>
+    </header>
+
+    <main>
+        <div id="rulingsTable">
+            <h2>Rulings and Warrants</h2>
+            <table id="rulingsTableBody">
+                <thead>
+                    <tr>
+                        <th>Judge</th>
+                        <th>Ruling</th>
+                        <th>Warrant</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rulings and Warrants will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Judicial Panel</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const judicialData = JSON.parse(localStorage.getItem('judicialData')) || [];
+            const rulingsTableBody = document.getElementById('rulingsTableBody');
+            
+            judicialData.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.judge}</td>
+                    <td>${item.ruling}</td>
+                    <td>${item.warrant}</td>
+                    <td>${item.date}</td>
+                `;
+                rulingsTableBody.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>
