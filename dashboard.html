@@ -25,21 +25,24 @@
         <h2>Welcome, <span id="username"></span></h2>
         <p>Your dashboard is ready for you to manage cases and other responsibilities.</p>
 
-        <section>
-            <h3>Case Management</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Case Number</th>
-                        <th>Case Title</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="case-list">
-                    <!-- Cases will be populated here -->
-                </tbody>
-            </table>
-        </section>
+        <section id="caseManagement">
+    <h2>Case Management</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Case ID</th>
+                <th>Title</th>
+                <th>Assigned Judge</th>
+                <th>Status</th>
+                <th>Update Status</th>
+            </tr>
+        </thead>
+        <tbody id="caseManagementBody">
+            <!-- Cases will be dynamically added here -->
+        </tbody>
+    </table>
+</section>
+
     </main>
     <footer>
         <p>© 2024 Judiciary System</p>
