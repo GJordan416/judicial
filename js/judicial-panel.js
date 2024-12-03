@@ -39,10 +39,13 @@ async function assignJudge(caseId) {
     // Update the case with the assigned judge
     const cases = JSON.parse(localStorage.getItem('judicialCases')) || [];
     const caseIndex = cases.findIndex(c => c.id === caseId);
+
     if (caseIndex > -1) {
         // Assign judge and update status
         cases[caseIndex].assignedTo = selectedJudge;
         cases[caseIndex].status = 'Assigned';  // Set initial status to "Assigned"
+
+        // Remove from unassigned cases
         localStorage.setItem('judicialCases', JSON.stringify(cases));
 
         // Send Discord notification with embed
@@ -93,7 +96,7 @@ async function assignJudge(caseId) {
         }
 
         // Reload page to reflect changes in the table
-        location.reload();
+        location.reload(); // Refresh the page to update the table
     }
 }
 
