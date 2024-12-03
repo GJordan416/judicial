@@ -7,56 +7,33 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header with navigation -->
     <header>
         <div class="logo">
             <h1>Judicial System</h1>
         </div>
         <nav>
             <ul>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="judicial-panel.html">Judicial Panel</a></li>
-                <li><a href="view-rulings.html">View Rulings</a></li>
+                <li><a href="case-file.html">File Case</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main Content Section -->
     <main>
-        <section id="unassignedCases">
-            <h2>Unassigned Cases</h2>
-            <table id="unassignedCasesTable">
-                <thead>
-                    <tr>
-                        <th>Case ID</th>
-                        <th>Title</th>
-                        <th>Assign Judge</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="unassignedCasesBody">
-                    <!-- Unassigned cases will be populated here -->
-                </tbody>
-            </table>
-        </section>
+        <section id="judicialPanel">
+            <h2>Judicial Panel</h2>
 
-        <section id="judgeTools">
-            <h2>Judge's Tools</h2>
-            <div class="tool">
-                <label for="rulingInput">Ruling:</label>
-                <textarea id="rulingInput" placeholder="Write your ruling here..."></textarea>
-            </div>
-
-            <div class="tool">
-                <label for="warrantInput">Warrant:</label>
-                <textarea id="warrantInput" placeholder="Write warrant details here..."></textarea>
-            </div>
-
-            <button class="submit-btn" onclick="submitRulingAndWarrant()">Submit Ruling and Warrant</button>
+            <!-- Ruling Form -->
+            <h3>Submit Ruling</h3>
+            <form id="rulingForm" onsubmit="submitRuling(event)">
+                <label for="rulingLink">Ruling Link:</label>
+                <input type="url" id="rulingLink" required placeholder="Enter a valid link for the ruling">
+                <button type="submit">Submit Ruling</button>
+            </form>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Judicial System. All Rights Reserved.</p>
     </footer>
@@ -64,4 +41,3 @@
     <script src="judicial-panel.js"></script>
 </body>
 </html>
-
