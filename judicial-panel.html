@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header with navigation -->
     <header>
-        <h1>Judicial Panel</h1>
+        <div class="logo">
+            <h1>Judicial System</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="judicial-panel.html">Judicial Panel</a></li>
+                <li><a href="view-rulings.html">View Rulings</a></li>
+            </ul>
+        </nav>
     </header>
 
+    <!-- Main Content Section -->
     <main>
-        <div id="unassignedCases">
+        <section id="unassignedCases">
             <h2>Unassigned Cases</h2>
             <table id="unassignedCasesTable">
                 <thead>
@@ -27,22 +38,27 @@
                     <!-- Unassigned cases will be populated here -->
                 </tbody>
             </table>
-        </div>
+        </section>
 
-        <div id="judgeTools">
+        <section id="judgeTools">
             <h2>Judge's Tools</h2>
-            <label for="rulingInput">Ruling:</label>
-            <textarea id="rulingInput" placeholder="Write your ruling here..."></textarea>
+            <div class="tool">
+                <label for="rulingInput">Ruling:</label>
+                <textarea id="rulingInput" placeholder="Write your ruling here..."></textarea>
+            </div>
 
-            <label for="warrantInput">Warrant:</label>
-            <textarea id="warrantInput" placeholder="Write warrant details here..."></textarea>
+            <div class="tool">
+                <label for="warrantInput">Warrant:</label>
+                <textarea id="warrantInput" placeholder="Write warrant details here..."></textarea>
+            </div>
 
-            <button onclick="submitRulingAndWarrant()">Submit Ruling and Warrant</button>
-        </div>
+            <button class="submit-btn" onclick="submitRulingAndWarrant()">Submit Ruling and Warrant</button>
+        </section>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Judicial Panel</p>
+        <p>&copy; 2024 Judicial System. All Rights Reserved.</p>
     </footer>
 
     <script src="judicial-panel.js"></script>
