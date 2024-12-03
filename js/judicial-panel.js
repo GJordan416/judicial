@@ -89,3 +89,50 @@ function submitRulingAndWarrant() {
     document.getElementById('rulingInput').value = '';
     document.getElementById('warrantInput').value = '';
 }
+
+
+// Replace with your actual Discord webhook URL
+const webhookUrl = "https://discord.com/api/webhooks/1313312647344689163/L0R54rCuqLcdEau7TXgveaE5GuKdtMpBcYnFBkguqAY56F1vUL1vJqe0d5HLP4YVilSF";
+
+// Function to handle form submission
+function submitRuling(event) {
+    event.preventDefault();  // Prevent form from submitting traditionally
+
+    // Get the ruling link from the input field
+    const rulingLink = document.getElementById('rulingLink').value;
+
+    // Create an embed for Discord
+    const embed = {
+        "embeds": [
+            {
+                "title": "New Ruling Submitted",
+                "description": "A new ruling has been submitted by the Judicial Panel.",
+                "url": rulingLink, // The link to the ruling
+                "color": 3447003, // Optional: Color for the embed (blue)
+                "footer": {
+                    "text": "Judicial System"
+                },
+                "timestamp": new Date().toISOString()
+            }
+        ]
+    };
+
+    // Send the data to Discord via the webhook
+    fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(embed)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        alert("Ruling submitted successfully!");
+        document.getElementById('rulingForm').reset(); // Reset the form
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("There was an error submitting the ruling. Please try again.");
+    });
+}
