@@ -49,7 +49,7 @@ async function assignJudge(caseId) {
         localStorage.setItem('judicialCases', JSON.stringify(cases));
 
         // Send Discord notification with embed
-        const discordWebhookUrl = 'https://discord.com/api/webhooks/1313312647344689163/L0R54rCuqLcdEau7TXgveaE5GuKdtMpBcYnFBkguqAY56F1vUL1vJqe0d5HLP4YVilSF';
+        const discordWebhookUrl = 'https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN';
         const payload = {
             embeds: [
                 {
@@ -99,4 +99,5 @@ async function assignJudge(caseId) {
         location.reload(); // Refresh the page to update the table
     }
 }
+
 
