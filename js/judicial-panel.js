@@ -26,7 +26,7 @@ if (document.getElementById('caseTableBody')) {
     });
 }
 
-// Function to assign a judge to a case
+// Function to assign a judge to a case and send Discord notification
 async function assignJudge(caseId) {
     const judgeSelect = document.getElementById(`judgeSelect-${caseId}`);
     const selectedJudge = judgeSelect.value;
@@ -40,6 +40,7 @@ async function assignJudge(caseId) {
     const cases = JSON.parse(localStorage.getItem('judicialCases')) || [];
     const caseIndex = cases.findIndex(c => c.id === caseId);
     if (caseIndex > -1) {
+        // Assign judge and update status
         cases[caseIndex].assignedTo = selectedJudge;
         cases[caseIndex].status = 'Assigned';  // Set initial status to "Assigned"
         localStorage.setItem('judicialCases', JSON.stringify(cases));
@@ -95,3 +96,4 @@ async function assignJudge(caseId) {
         location.reload();
     }
 }
+
