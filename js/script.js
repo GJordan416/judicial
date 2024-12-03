@@ -60,17 +60,10 @@ if (document.getElementById('username') && localStorage.getItem('user')) {
     });
 }
 
-// Load Judicial Panel
-if (document.getElementById('panel-list')) {
-    const panelList = document.getElementById('panel-list');
-    judicialPanel.forEach(judge => {
-        const li = document.createElement('li');
-        li.textContent = `${judge.name} - ${judge.email}`;
-        panelList.appendChild(li);
-    });
-}
+// Mock judicial panel data
+const judicialCases = [];
 
-// Case filing simulation
+// Event listener for case submission
 document.getElementById('caseForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -79,12 +72,28 @@ document.getElementById('caseForm')?.addEventListener('submit', async function (
     const caseDetails = document.getElementById('caseDetails').value;
     const clientName = document.getElementById('clientName')?.value || "Anonymous";
 
+    // Generate a unique case ID
+    const caseId = `CASE-${Date.now()}`;
+
+    // Add the case to the judicial panel
+    const newCase = {
+        id: caseId,
+        title: caseTitle,
+        details: caseDetails,
+        client: clientName,
+        assignedTo: null // Not assigned to a judge yet
+    };
+    judicialCases.push(newCase);
+
+    // Update the localStorage (simulate database storage)
+    localStorage.setItem('judicialCases', JSON.stringify(judicialCases));
+
     // Discord webhook URL
     const discordWebhookUrl = 'https://discord.com/api/webhooks/1313312647344689163/L0R54rCuqLcdEau7TXgveaE5GuKdtMpBcYnFBkguqAY56F1vUL1vJqe0d5HLP4YVilSF';
 
-    // Prepare payload
+    // Prepare payload for Discord
     const payload = {
-        content: `**New Case Filed**\n**Title:** ${caseTitle}\n**Client:** ${clientName}\n**Details:** ${caseDetails}`
+        content: `**New Case Filed**\n**Case ID:** ${caseId}\n**Title:** ${caseTitle}\n**Client:** ${clientName}\n**Details:** ${caseDetails}\n\nThis case is ready to be assigned to a judge.`
     };
 
     try {
@@ -108,6 +117,7 @@ document.getElementById('caseForm')?.addEventListener('submit', async function (
         alert('An error occurred while sending the case details.');
     }
 });
+
 
 
 // Admin Panel: Manage Users
