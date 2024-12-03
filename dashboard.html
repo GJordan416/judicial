@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Judiciary Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+            <h1>Judiciary Portal</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="case-file.html">File a Case</a></li>
+                <li><a href="judicial-panel.html">Judicial Panel</a></li>
+                <li><a href="admin.html">Admin Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Welcome, <span id="username"></span></h2>
+        <p>Your dashboard is ready for you to manage cases and other responsibilities.</p>
+
+        <section>
+            <h3>Case Management</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Case Number</th>
+                        <th>Case Title</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="case-list">
+                    <!-- Cases will be populated here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Judiciary System</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
