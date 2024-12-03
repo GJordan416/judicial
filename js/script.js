@@ -71,16 +71,44 @@ if (document.getElementById('panel-list')) {
 }
 
 // Case filing simulation
-document.getElementById('caseForm')?.addEventListener('submit', function (event) {
+document.getElementById('caseForm')?.addEventListener('submit', async function (event) {
     event.preventDefault();
 
+    // Grab the case details
     const caseTitle = document.getElementById('caseTitle').value;
     const caseDetails = document.getElementById('caseDetails').value;
+    const clientName = document.getElementById('clientName')?.value || "Anonymous";
 
-    // Simulate case filing by logging to the console
-    console.log('Case Filed:', caseTitle, caseDetails);
-    alert('Case filed successfully');
+    // Discord webhook URL
+    const discordWebhookUrl = 'https://discord.com/api/webhooks/1313312647344689163/L0R54rCuqLcdEau7TXgveaE5GuKdtMpBcYnFBkguqAY56F1vUL1vJqe0d5HLP4YVilSF';
+
+    // Prepare payload
+    const payload = {
+        content: `**New Case Filed**\n**Title:** ${caseTitle}\n**Client:** ${clientName}\n**Details:** ${caseDetails}`
+    };
+
+    try {
+        // Send data to the Discord webhook
+        const response = await fetch(discordWebhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            alert('Case filed successfully and sent to Discord!');
+        } else {
+            console.error('Error sending to Discord:', response.statusText);
+            alert('Failed to send case details to Discord.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while sending the case details.');
+    }
 });
+
 
 // Admin Panel: Manage Users
 if (document.getElementById('user-list')) {
