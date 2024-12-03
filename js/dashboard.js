@@ -1,30 +1,34 @@
-if (document.getElementById('caseManagementBody')) {
-    const savedCases = JSON.parse(localStorage.getItem('judicialCases')) || [];
-    const caseManagementBody = document.getElementById('caseManagementBody');
+document.addEventListener('DOMContentLoaded', () => {
+    // Now the DOM is fully loaded, let's run the script
 
-    // Clear the table before populating
-    caseManagementBody.innerHTML = '';
+    if (document.getElementById('caseManagementBody')) {
+        const savedCases = JSON.parse(localStorage.getItem('judicialCases')) || [];
+        const caseManagementBody = document.getElementById('caseManagementBody');
 
-    savedCases.forEach(caseItem => {
-        if (caseItem.assignedTo) {  // Only show assigned cases
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${caseItem.id}</td>
-                <td>${caseItem.title}</td>
-                <td>${caseItem.assignedTo}</td>
-                <td>
-                    <select id="statusSelect-${caseItem.id}">
-                        <option value="Assigned" ${caseItem.status === 'Assigned' ? 'selected' : ''}>Assigned</option>
-                        <option value="In Progress" ${caseItem.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
-                        <option value="Closed" ${caseItem.status === 'Closed' ? 'selected' : ''}>Closed</option>
-                    </select>
-                </td>
-                <td><button onclick="updateStatus('${caseItem.id}')">Update Status</button></td>
-            `;
-            caseManagementBody.appendChild(row);
-        }
-    });
-}
+        // Clear the table before populating
+        caseManagementBody.innerHTML = '';
+
+        savedCases.forEach(caseItem => {
+            if (caseItem.assignedTo) {  // Only show assigned cases
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${caseItem.id}</td>
+                    <td>${caseItem.title}</td>
+                    <td>${caseItem.assignedTo}</td>
+                    <td>
+                        <select id="statusSelect-${caseItem.id}">
+                            <option value="Assigned" ${caseItem.status === 'Assigned' ? 'selected' : ''}>Assigned</option>
+                            <option value="In Progress" ${caseItem.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                            <option value="Closed" ${caseItem.status === 'Closed' ? 'selected' : ''}>Closed</option>
+                        </select>
+                    </td>
+                    <td><button onclick="updateStatus('${caseItem.id}')">Update Status</button></td>
+                `;
+                caseManagementBody.appendChild(row);
+            }
+        });
+    }
+});
 
 // Function to update the status of a case
 function updateStatus(caseId) {
@@ -41,4 +45,3 @@ function updateStatus(caseId) {
         location.reload();  // Reload page to reflect status change
     }
 }
-
