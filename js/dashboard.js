@@ -2,6 +2,9 @@ if (document.getElementById('caseManagementBody')) {
     const savedCases = JSON.parse(localStorage.getItem('judicialCases')) || [];
     const caseManagementBody = document.getElementById('caseManagementBody');
 
+    // Clear the table before populating
+    caseManagementBody.innerHTML = '';
+
     savedCases.forEach(caseItem => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -26,7 +29,7 @@ function updateStatus(caseId) {
     const statusSelect = document.getElementById(`statusSelect-${caseId}`);
     const newStatus = statusSelect.value;
 
-    // Update the case status
+    // Update the case status in localStorage
     const cases = JSON.parse(localStorage.getItem('judicialCases')) || [];
     const caseIndex = cases.findIndex(c => c.id === caseId);
     if (caseIndex > -1) {
@@ -36,3 +39,4 @@ function updateStatus(caseId) {
         location.reload();  // Reload page to reflect status change
     }
 }
+
